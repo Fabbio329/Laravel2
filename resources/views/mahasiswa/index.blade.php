@@ -1,28 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Data Mahasiswa</title>
-</head>
-<body>
+@extends('layout.app')
+@section('content')
 
-    <h1>Data Mahasiswa</h1>
+<div class="container-fluid">
 
-    <a href="/mahasiswa/create">
-        Tambah Mahasiswa
-    </a>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Data Mahasiswa</h1>
+                    <p class="mb-4">
+                        Daftar mahasiswa yang terdaftar pada sistem akademik.
+                    </p>
 
-    <table border="1" cellpadding="10">
+                    <!-- Data Mahasiswa -->
+                    <div class="card shadow mb-4">
 
-        <tr>
-            <th>No</th>
-            <th>NIM</th>
-            <th>Nama</th>
-            <th>Prodi</th>
-            <th>Alamat</th>
-            <th>Aksi</th>
-        </tr>
+                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                            <h6 class="m-0 font-weight-bold text-primary">
+                                Data Mahasiswa
+                            </h6>
 
-        @foreach($mahasiswas as $item)
+                            <a href="tambah_mahasiswa.html" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus"></i>
+                                Tambah Mahasiswa
+                            </a>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>NIM</th>
+                                            <th>Nama Mahasiswa</th>
+                                            <th>Prodi</th>
+                                            <th>Alamat</th>
+                                            <th width="180">Aksi</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach($mahasiswas as $item)
 
     <tr>
 
@@ -40,8 +58,8 @@
 
         <td>
 
-            <a href="/mahasiswa/{{ $item->id }}/edit">
-                Edit
+            <a href="/mahasiswa/{{ $item->id }}/edit" class="btn btn-warning btn-sm">
+               <i class="fas fa-edit"></i> Edit
             </a>
 
             <form action="/mahasiswa/{{ $item->id }}"
@@ -50,8 +68,8 @@
                 @csrf
                 @method('DELETE')
 
-                <button type="submit">
-                    Hapus
+                <button class="btn btn-danger btn-sm" type="submit">
+                   <i class="fas fa-trash"> Hapus
                 </button>
 
             </form>
@@ -61,8 +79,18 @@
     </tr>
 
 @endforeach
+                                    </tbody>
 
-</table>
+                                </table>
 
-</body>
-</html>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+@endsection
+
+
+

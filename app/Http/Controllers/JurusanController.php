@@ -25,7 +25,7 @@ class JurusanController extends Controller
             'nama_jurusan' => $request->nama_jurusan
         ]);
 
-        return redirect('/jurusan');
+        return redirect()->route('jurusan.index');
     }
 
     public function edit($id)
@@ -43,7 +43,7 @@ class JurusanController extends Controller
             'nama_jurusan' => $request->nama_jurusan
         ]);
 
-        return redirect('/jurusan');
+        return redirect()->route('jurusan.index');
     }
 
     public function destroy($id)
@@ -52,6 +52,6 @@ class JurusanController extends Controller
 
         $jurusan->delete();
 
-        return redirect('/jurusan');
+        return redirect()->route('jurusan.index');
     }
 }

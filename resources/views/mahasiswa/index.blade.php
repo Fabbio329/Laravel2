@@ -17,7 +17,7 @@
                                 Data Mahasiswa
                             </h6>
 
-                            <a href="tambah_mahasiswa.html" class="btn btn-primary btn-sm">
+                            <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary btn-sm">
                                 <i class="fas fa-plus"></i>
                                 Tambah Mahasiswa
                             </a>
@@ -58,11 +58,11 @@
 
         <td>
 
-            <a href="/mahasiswa/{{ $item->id }}/edit" class="btn btn-warning btn-sm">
+            <a href="{{ route('mahasiswa.edit', $item->id) }}/edit" class="btn btn-warning btn-sm">
                <i class="fas fa-edit"></i> Edit
             </a>
 
-            <form action="/mahasiswa/{{ $item->id }}"
+            <form action="/mahasiswa/{{ route('mahasiswa.destroy', $item->id) }}"
                   method="POST">
 
                 @csrf

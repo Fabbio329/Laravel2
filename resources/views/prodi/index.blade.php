@@ -17,7 +17,7 @@
                     Data Prodi
                 </h6>
 
-                <a href="/prodi/create" class="btn btn-primary btn-sm">
+                <a href="{{ route('prodi.create') }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus"></i>
                     Tambah Prodi
                 </a>
@@ -45,10 +45,10 @@
                                     <td>{{ $item->jurusan->nama_jurusan }}</td>
                                     <td>{{ $item->nama_prodi }}</td>
                                     <td>
-                                        <a href="/prodi/{{ $item->id }}/edit" class="btn btn-warning btn-sm">
+                                        <a href="{{ route('prodi.edit', $item->id) }}/edit" class="btn btn-warning btn-sm">
                                             <i class="fas fa-edit"></i> Edit
                                         </a>
-                                        <form action="/prodi/{{ $item->id }}" method="POST">
+                                        <form action="{{ route('prodi.destroy', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
 

@@ -18,7 +18,7 @@
                 Data Jurusan
             </h6>
 
-            <a href="/jurusan/create" class="btn btn-primary btn-sm">
+            <a href="{{ route('jurusan.create') }}" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i>
                 Tambah Jurusan
             </a>
@@ -44,11 +44,11 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->nama_jurusan }}</td>
                             <td>
-                                <a href="/jurusan/{{ $item->id }}/edit" class="btn btn-warning btn-sm">
+                                <a href="{{ route('jurusan.edit', $item->id) }}/edit" class="btn btn-warning btn-sm">
                                     <i class="fas fa-edit"></i> Update
                                 </a>
 
-                                <form action="/jurusan/{{ $item->id }}" method="POST">
+                                <form action="{{ route('jurusan.destroy', $item->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"class="btn btn-danger btn-sm">

@@ -1,46 +1,62 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Prodi</title>
-</head>
-<body>
-    <h1>Edit Prodi</h1>
-    <form action="/prodi/{{ $prodi->id }}"
-          method="POST">
-        @csrf
-        @method('PUT')
-        <div>
-            <label>Jurusan</label>
+@extends('layout.app')
+@section('content')
 
-            <select name="jurusan_id">
-                
-                @foreach($jurusans as $jurusan)
+<div class="container-fluid">
 
-                <option value="{{ $jurusan->id }}"
-                    {{ $prodi->jurusan_id == $jurusan->id ? 'selected' : ''}}>
-                    {{ $jurusan->nama_jurusan }}
-                </option>
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Ubah Prodi</h1>
 
-                @endforeach
-            </select>
+    <!-- Card -->
+    <div class="card shadow mb-4">
 
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                Form Ubah Prodi
+            </h6>
         </div>
 
-        <br>
-        <div>
-            <label>Nama Prodi</label>
-            <input type="text"
-                   name="nama_prodi"
-                   value="{{ $prodi->nama_prodi }}">
+        <div class="card-body">
 
+            <form action="{{ route('prodi.index',$prodi->id) }}" method="post">
+                @csrf
+                @method('PUT')
+
+                <div class="form-group">
+                    <label>Nama Prodi</label>
+                    <input type="text"
+                           class="form-control"
+                           name="nama_prodi"
+                           value="{{ $prodi->nama_prodi }}">
+                </div>
+
+                <div class="form-group">
+                    <label>Jurusan</label>
+                    <select class="form-control" name="jurusan">
+                        @foreach($jurusans as $jurusan)
+
+                        <option value="{{ $jurusan->id }}"
+                            {{ $prodi->jurusan_id == $jurusan->id ? 'selected':'' }}>
+                            {{ $jurusan->nama_jurusan }}
+                        </option>
+
+                        @endforeach
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save"></i>
+                    Update
+                </button>
+
+                <a href="{{ route('prodi.index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Kembali
+                </a>
+
+            </form>
 
         </div>
-        <br>
-        <button type="submit">
-            Update
+    </div>
 
-        </button>
-
-    </form>
-</body>
-</html>
+</div>
+@endsection
